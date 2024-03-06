@@ -17,8 +17,12 @@ This workshop demands that users:
    
 ## Set Up (do before the workshop)
 1. Install a python distribution on your personal computer (I recommend [anaconda](https://www.anaconda.com/download/))
-2. Install the [Nilearn package](https://nilearn.github.io/dev/quickstart.html#quickstart) and it's relevant prerequisite packages
-3. Download the [workshop materials](https://github.com/hspopal/tutorials/archive/refs/heads/main.zip)
+2. Install the [Nilearn package](https://nilearn.github.io/dev/quickstart.html#quickstart) and it's relevant prerequisite packages:
+   a. If you have anaconda, you can run the following in the command line: ```conda install conda-forge::nilearn
+   b. Or, if you wish to create a separate anaconda environment:
+      ```conda create -n nilearn python=3.9
+      ```conda activate nilearn
+4. Download the [workshop materials](https://github.com/hspopal/tutorials/archive/refs/heads/main.zip)
     
 ## Workshop objectives:
 1. Understand how the Nilearn package handles neuroimaging data, and the similaries to existing python structures
