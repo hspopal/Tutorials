@@ -22,6 +22,7 @@ This workshop demands that users:
    a. If you have anaconda, you can run the following in the command line: `conda install conda-forge::nilearn`
    
    b. Or, if you wish to create a separate anaconda environment:
+   
       `conda create -n nilearn python=3.9`
    
       `conda activate nilearn`
