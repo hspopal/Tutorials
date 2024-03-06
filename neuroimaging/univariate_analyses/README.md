@@ -20,8 +20,9 @@ This workshop demands that users:
 2. Install the [Nilearn package](https://nilearn.github.io/dev/quickstart.html#quickstart) and it's relevant prerequisite packages:
    a. If you have anaconda, you can run the following in the command line: `conda install conda-forge::nilearn`
    b. Or, if you wish to create a separate anaconda environment:
-      `conda create -n nilearn python=3.9
-       conda activate nilearn`
+      `conda create -n nilearn python=3.9`
+      `conda activate nilearn`
+   
 4. Download the [workshop materials](https://github.com/hspopal/tutorials/archive/refs/heads/main.zip)
     
 ## Workshop objectives:
