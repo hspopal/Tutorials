@@ -18,6 +18,7 @@ This workshop demands that users:
 ## Set Up (do before the workshop)
 1. Install a python distribution on your personal computer (I recommend [anaconda](https://www.anaconda.com/download/))
 2. Install the [Nilearn package](https://nilearn.github.io/dev/quickstart.html#quickstart) and it's relevant prerequisite packages:
+
    a. If you have anaconda, you can run the following in the command line: `conda install conda-forge::nilearn`
    b. Or, if you wish to create a separate anaconda environment:
       `conda create -n nilearn python=3.9`
