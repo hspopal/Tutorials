@@ -35,7 +35,7 @@ Completing the workshop can be done completely in a Google Colab notebook. If us
 3. Complete second level analyses to create group level contrast maps
 
 ## Workshop materials:
-[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/hspopal/tutorials/blob/main/neuroimaging/univariate_analyses/univariate_analyses.ipynb)
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://drive.google.com/file/d/1CHPZR099nCJ8XR59OnmrJtdxzPUr35xp/view?usp=sharing)
 
 ## What We Won't Cover:
 The flaws of other neuroimaging software (I won't go there). 
