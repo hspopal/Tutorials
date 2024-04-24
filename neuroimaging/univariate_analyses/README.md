@@ -38,11 +38,11 @@ Completing the workshop can be done completely in a Google Colab notebook. If us
 [![Google Colab Workshop Notebook](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/hspopal/tutorials/blob/main/neuroimaging/univariate_analyses/univariate_analyses.ipynb)
 
 ### Example Scripts
-- social_reward_1st_level_analysis.py
+- social_reward_1st_level-nilearn.py
    - This is the actual script I use to do first level analyses
    - It can be run via the command line and takes a participant ID number as an input
    - The script can be modified, just as we went through in the workshop, to pull conditions of interests from your specific task
-- [social_reward_2nd_level_analysis.ipynb](https://hspopal.github.com/tutorials/neuroimaging/univariate_analyses/social_reward_2nd_level_analysis)
+- [social_reward_2nd_level-nilearn.ipynb](https://hspopal.github.com/tutorials/neuroimaging/univariate_analyses/social_reward_2nd_level-nilearn)
    - This notebook is very similar to the second level analysis section of the workshop
 
 ## What We Won't Cover:
