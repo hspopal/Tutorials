@@ -43,7 +43,7 @@ Completing the workshop can be done completely in a Google Colab notebook. If us
    - It can be run via the command line and takes a participant ID number as an input
    - The script can be modified, just as we went through in the workshop, to pull conditions of interests from your specific task
    - It creates beta maps for each condition, for each run, as well as for all runs averaged together
-- [social_reward_2nd_level-nilearn.ipynb](https://hspopal.github.com/tutorials/neuroimaging/univariate_analyses/social_reward_2nd_level-nilearn.html)
+- [social_reward_2nd_level-nilearn.ipynb](https://hspopal.github.io/tutorials/neuroimaging/univariate_analyses/social_reward_2nd_level-nilearn.html)
    - This notebook is very similar to the second level analysis section of the workshop
 
 ## What We Won't Cover:
