@@ -36,7 +36,7 @@ Completing the workshop can be done completely in a Google Colab notebook. If us
 
 ## Workshop materials:
 - [Notebook Viewer](https://hspopal.github.io/tutorials/neuroimaging/univariate_analyses/index.html) **UNDER CONSTRUCTION**
-[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)]([https://colab.research.google.com/drive/1ICa2nh3mbflJCrJ4oKNUHWTZ9_vTJw8F?usp=sharing](https://colab.research.google.com/github/hspopal/tutorials/blob/main/neuroimaging/univariate_analyses/univariate_analyses.ipynb))
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/hspopal/tutorials/blob/main/neuroimaging/univariate_analyses/univariate_analyses.ipynb)
 
 ## What We Won't Cover:
 The flaws of other neuroimaging software (I won't go there). 
