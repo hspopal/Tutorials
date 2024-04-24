@@ -4,18 +4,18 @@
 __**Content creator:**__ Haroon Popal \
 **Note**: Code heavily borrowed from [Nilearn's own tutorials](https://nilearn.github.io/dev/auto_examples/04_glm_first_level/index.html). 
 
-## WARNING: UNDER CONSTRUCTION!
-
 ## Description
 This workshop serves as a beginner's guide for using Nilearn to analyze neuroimaging data. It covers first and second level analyses, with code that can be easily adopted for your own analyses.
 
 
 ## Prerequisites
-This workshop demands that users:
+This workshop assumes that users:
 1. are comfortable coding in python OR
 2. have a good understanding of fMRI analyses, with experience using other software (e.g. AFNI, FSL, SPM)
    
 ## Set Up (do before the workshop)
+Completing the workshop can be done completely in a Google Colab notebook. If users want to use their own data for the workshop then the following needs to be done before the workshop:
+
 1. Install a python distribution on your personal computer (I recommend [anaconda](https://www.anaconda.com/download/))
 2. Install the [Nilearn package](https://nilearn.github.io/dev/quickstart.html#quickstart) and it's relevant prerequisite packages:
 
