@@ -1,5 +1,5 @@
 # Univariate Analyses in Nilearn Workshop
-03/20/2024
+04/24/2024
 
 __**Content creator:**__ Haroon Popal \
 **Note**: Code heavily borrowed from [Nilearn's own tutorials](https://nilearn.github.io/dev/auto_examples/04_glm_first_level/index.html). 
