@@ -40,7 +40,7 @@ The next step would be to download the dicoms for your participants. For a singl
 ```
 sh code/preprocessing_TRW-bswift2.sh -s 001 -d
 ```
-This will download the dicoms from subject 001 (with the appropriate prefix you noted in the above script) from the MNC servers and place them in the `sourcedata` directory.
+This will download the dicoms from subject 001 (with the appropriate prefix you noted in the above script) from the MNC servers and place them in the `sourcedata` directory. The `setup.sh` script has a for loop than can be used to run this for all your participants, utilizing the subject list defined at the beginning of the script.
 
 
 ### Converting dicoms to NIFTIs
@@ -86,10 +86,15 @@ Once this command is run, it will create a hidden directory, `.heudiconv/`, in y
 `[](docs/dicominfo.png)
 We can use this information in the `heuristic.py` file. **Note:** running the above command may also create a `heuristic.py` file. I have found this "newer" version to be confusing. The `heuristic.py` file I have included here is more simple in my opinion. 
 
-Next, while referencing the `dicominfo.tsv` spreadsheet, update the appropriate information in the `heuristic.py` script to create a key for your scans. In the files I have attached, I am noting that the t1_mpr_sag_p2_iso_0.9 MRI sequence name along with its specific dimensions should be converted to a t1w NIFTI file. I also note the specific fMRI sequences and the task names I would like to use (e.g. sequence cmrr_F6_R2.2C_TR1250_V293_int is named func_task_1, which I defined with the prefix task-int). 
+Next, while referencing the `dicominfo.tsv` spreadsheet, update the appropriate information in the `heuristic.py` script to create a key for your scans. In the files I have attached, I am noting that the t1_mpr_sag_p2_iso_0.9 MRI sequence name along with its specific dimensions should be converted to a t1w NIFTI file. I also note the specific fMRI sequences and the task names I would like to use (e.g. sequence cmrr_F6_R2.2C_TR1250_V293_int is named func_task_1, which I defined with the prefix task-int). More information on how to setup your heuristic file can be found in this [tutorial]().
 
-More information on how to setup your heuristic file can be found in this [tutorial]().
-
+Once your `heuristic.py` file is setup, edit the `heudiconv.sh` script to have the appropriate inputs for the singularity command for your dataset. Then, we can run the `-n` flag with our preprocessing script to create NIFTIs.
+```
+sh code/preprocessing_TRW-bswift2.sh -s 001 -n
+```
+Once this command is finished, you should see a subdirectory (e.g. `sub-REDTRW001`) in the `Nifti` directory. This is your MRI data in BIDS format for your subject. Inside, you should see NIFTI files for the anatomical, fieldmap, and functional scans. 
+![](docs/bids_niftis.png)
+If you do not see these files, along with some json files, then check your `heuristic.py` file to make sure your keys and inputs are correct. Most issues in getting your files converted occur because of errors in the `heuristic.py` file. There are also extra files in the `Nifti` directory which are created by heudiconv to match BIDS format, and that you can use in your later processing (e.g. `Nifti/dataset_description.json`)
 
 
 ### Running fmriprep
