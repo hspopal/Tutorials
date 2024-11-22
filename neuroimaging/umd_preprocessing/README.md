@@ -12,6 +12,8 @@ These series of scripts were written to get a new MRI project started, download 
 
 These scripts are meant to make some tedius work in processing your data more streamlined. Users of these scripts should understand most of the underlying code. Users should absolutely have basic knowledge of the command line and langauges such as Bash. Users should be able to easily navigate through directories and remote servers. If you are not comfortable with these skills, see these tutorials and tread carefully. 
 
+### Singularity
+
 
 ## Setup
 For a new project, a new project directory will have to be created in BIDS format. For this pipeline, that includes the main project directory. The main project directory referenced here is `/data/neuron/TRW/reprocessed`. This dataset utilizes a previously collected dataset, in which I converted everything to BIDS format and ran fmriprep. Which is why there is a `reprocessed` directory. Subdirectories should also be created for the following:
@@ -41,6 +43,51 @@ This will download the dicoms from subject 001 (with the appropriate prefix you 
 
 
 ### Converting dicoms to NIFTIs
+We can use the clever heudiconv software to convert our dicoms to NIFTI files in BIDS format. First, ensure that you have singularity installed on your lab server. You should also download a heudiconv singularity, and I recommend you put in a general location that you can use for multiple projects. Heudiconv will be used to automatically convert your scans from the individual dicoms to NIFTI files in the appropriate directories depending on whether the scans are anatomical, field maps, or functional scans. There is also a method to convert diffusion weighted images (DWI). First, we need to tell heudiconv what kinds of files to look for. We will use heudiconv to take a quick peek at the data, before we ask it to convert the dicoms to NIFTIs.
+
+#### Setting up the heuristic.py file
+The `setup.sh` script has a singularity command that allows us to peak at the type of data we have:
+```
+singularity exec \
+    --bind /data/neuron/TRW/reprocessed:/base \
+    /software/neuron/Containers/heudiconv_latest.sif \
+    heudiconv \
+    -d /base/sourcedata/RED_TRW_{subject}/*/*/*.dcm \
+    -o /base/Nifti \
+    -f reproin \
+    -s 001 \
+    -c none \
+    --overwrite 
+```
+Let's break down this code:
+- singularity exec
+      - This runs singularity
+- bind
+      - Singularity needs to be told some paths so that it can do its container thing
+      - We give it the path for the overall project or BIDS directory which will be refereced to as "base" within the singularity container, and a path to the heudiconv image (heudiconv_latest.sif)
+- d
+      - The path for where the dicoms will be located, but starting the path from the "base" (e.g. `/base/sourcedata` since base is defined as `/data/neuron/TRW/reprocessed` and put the raw dicoms for each subject in `/data/neuron/TRW/reprocessed/sourcedata`
+      - Use wildcards to find all the dicoms for a particular partcipant's data
+- o
+      - Output directory for the NIFTIs
+- f
+      - We input the reproin [software](https://github.com/ReproNim/reproin)
+- s
+      - Subject ID
+- c
+      - This is the command we want to do
+      - Right now this is none, but later we will rerun this code to actuall convert the dicoms to NIFTIs
+- overwrite
+      - Overwrites the data if it already exists
+
+Once this command is run, it will create a hidden directory, `.heudiconv/`, in your BIDS directory (e.g. `/data/neuron/TRW/reprocessed/.heudiconv/`). Inside this hidden directory, you will find a subdirectory for 001, and a further subdirectory `info` which contains a `dicominfo.tsv` file. This file contains the sequence information for each scan, such as the sequence name, dimensions, TR and TE information, etc. 
+`[](docs/dicominfo.png)
+We can use this information in the `heuristic.py` file. **Note:** running the above command may also create a `heuristic.py` file. I have found this "newer" version to be confusing. The `heuristic.py` file I have included here is more simple in my opinion. 
+
+Next, while referencing the `dicominfo.tsv` spreadsheet, update the appropriate information in the `heuristic.py` script to create a key for your scans. In the files I have attached, I am noting that the t1_mpr_sag_p2_iso_0.9 MRI sequence name along with its specific dimensions should be converted to a t1w NIFTI file. I also note the specific fMRI sequences and the task names I would like to use (e.g. sequence cmrr_F6_R2.2C_TR1250_V293_int is named func_task_1, which I defined with the prefix task-int). 
+
+More information on how to setup your heuristic file can be found in this [tutorial]().
+
 
 
 ### Running fmriprep
