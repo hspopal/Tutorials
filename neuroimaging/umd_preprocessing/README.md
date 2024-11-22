@@ -30,8 +30,14 @@ The `setup.sh` script is meant to help users run the relevant commands for this 
 
 
 ## Preprocessing
+The main script for this pipeline is the `preprocessing-bswift2.sh` file. Certain variables and paths need to be edited in this file for your specific setup. These can be found between lines 79 and 89. 
 
 ### Downloading dicoms
+The next step would be to download the dicoms for your participants. For a single participant you can run the code:
+```
+sh code/preprocessing_TRW-bswift2.sh -s 001 -d
+```
+This will download the dicoms from subject 001 (with the appropriate prefix you noted in the above script) from the MNC servers and place them in the `sourcedata` directory.
 
 
 ### Converting dicoms to NIFTIs
