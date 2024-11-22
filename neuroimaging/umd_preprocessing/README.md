@@ -61,6 +61,7 @@ singularity exec \
     --overwrite 
 ```
 Let's break down this code:
+
 - singularity exec
       - This runs singularity
 - bind
