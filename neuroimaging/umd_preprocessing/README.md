@@ -1,18 +1,12 @@
 # fMRI Preprocessing at UMD
 
-- [setup.sh](https://github.com/hspopal/tutorials/blob/main/neuroimaging/umd_preprocessing/code/setup.sh)
-- [heuristi.py]()
-- [preprocessing-bswift.sh]()
-- [heudiconv.sh]()
-- [fmriprep-bswift2.sh]()
-- [data_transfer.sh]()
-
 ## Background Information
 These series of scripts were written to get a new MRI project started, download data, and preprocessing it using fmriprep. These steps are done on a lab server, such as neuron in the DSCN lab. The fmriprep preprocessing takes place on the BSWIFT2 high performance cluster (HPC). The scripts can be modified for your needs, for different datasets and servers. All of the scripts references in this documentation are available in the `code` directory. These scripts will have to be placed in specific locations for them to work together. All of those details are noted below.
 
 These scripts are meant to make some tedius work in processing your data more streamlined. Users of these scripts should understand most of the underlying code. Users should absolutely have basic knowledge of the command line and langauges such as Bash. Users should be able to easily navigate through directories and remote servers. If you are not comfortable with these skills, see these tutorials and tread carefully. 
 
 ### Singularity
+Details on singularity are outside the scope of this tutorial. To be honest, singularity, docker, and containers confuse me. For the purposes of this tutorial, I think of singularity as a software that allows me to run programs on a HPC, without installing all the required software on that resource. Typically, HPCs are picky about what gets installed on them, and users do not have to ability to install whatever they want. Singularity offers a solution which uses "images" of software to run what you need. To run fmriprep on BSWIFT2, you will need to [create an fmriprep singularity image](https://fmriprep.org/en/1.5.4/singularity.html).
 
 
 ## Setup
@@ -87,7 +81,7 @@ Once this command is run, it will create a hidden directory, `.heudiconv/`, in y
 
 We can use this information in the `heuristic.py` file. **Note:** running the above command may also create a `heuristic.py` file. I have found this "newer" version to be confusing. The `heuristic.py` file I have included here is more simple in my opinion. 
 
-Next, while referencing the `dicominfo.tsv` spreadsheet, update the appropriate information in the `heuristic.py` script to create a key for your scans. In the files I have attached, I am noting that the t1_mpr_sag_p2_iso_0.9 MRI sequence name along with its specific dimensions should be converted to a t1w NIFTI file. I also note the specific fMRI sequences and the task names I would like to use (e.g. sequence cmrr_F6_R2.2C_TR1250_V293_int is named func_task_1, which I defined with the prefix task-int). More information on how to setup your heuristic file can be found in this [tutorial]().
+Next, while referencing the `dicominfo.tsv` spreadsheet, update the appropriate information in the `heuristic.py` script to create a key for your scans. In the files I have attached, I am noting that the t1_mpr_sag_p2_iso_0.9 MRI sequence name along with its specific dimensions should be converted to a t1w NIFTI file. I also note the specific fMRI sequences and the task names I would like to use (e.g. sequence cmrr_F6_R2.2C_TR1250_V293_int is named func_task_1, which I defined with the prefix task-int). More information on how to setup your heuristic file can be found in this [tutorial](https://github.com/TU-Coding-Outreach-Group/cog_summer_workshops_2021/tree/main/bids-heudiconv-fmriprep).
 
 Once your `heuristic.py` file is setup, edit the `heudiconv.sh` script to have the appropriate inputs for the singularity command for your dataset. Then, we can run the `-n` flag with our preprocessing script to create NIFTIs.
 ```
