@@ -63,24 +63,24 @@ singularity exec \
 Let's break down this code:
 
 - singularity exec
-      - This runs singularity
+    - This runs singularity
 - bind
-      - Singularity needs to be told some paths so that it can do its container thing
-      - We give it the path for the overall project or BIDS directory which will be refereced to as "base" within the singularity container, and a path to the heudiconv image (heudiconv_latest.sif)
+    - Singularity needs to be told some paths so that it can do its container thing
+    - We give it the path for the overall project or BIDS directory which will be refereced to as "base" within the singularity container, and a path to the heudiconv image (heudiconv_latest.sif)
 - d
-      - The path for where the dicoms will be located, but starting the path from the "base" (e.g. `/base/sourcedata` since base is defined as `/data/neuron/TRW/reprocessed` and put the raw dicoms for each subject in `/data/neuron/TRW/reprocessed/sourcedata`
-      - Use wildcards to find all the dicoms for a particular partcipant's data
+    - The path for where the dicoms will be located, but starting the path from the "base" (e.g. `/base/sourcedata` since base is defined as `/data/neuron/TRW/reprocessed` and put the raw dicoms for each subject in `/data/neuron/TRW/reprocessed/sourcedata`
+    - Use wildcards to find all the dicoms for a particular partcipant's data
 - o
-      - Output directory for the NIFTIs
+    - Output directory for the NIFTIs
 - f
-      - We input the reproin [software](https://github.com/ReproNim/reproin)
+    - We input the reproin [software](https://github.com/ReproNim/reproin)
 - s
-      - Subject ID
+    - Subject ID
 - c
-      - This is the command we want to do
-      - Right now this is none, but later we will rerun this code to actuall convert the dicoms to NIFTIs
+    - This is the command we want to do
+    - Right now this is none, but later we will rerun this code to actuall convert the dicoms to NIFTIs
 - overwrite
-      - Overwrites the data if it already exists
+    - Overwrites the data if it already exists
 
 Once this command is run, it will create a hidden directory, `.heudiconv/`, in your BIDS directory (e.g. `/data/neuron/TRW/reprocessed/.heudiconv/`). Inside this hidden directory, you will find a subdirectory for 001, and a further subdirectory `info` which contains a `dicominfo.tsv` file. This file contains the sequence information for each scan, such as the sequence name, dimensions, TR and TE information, etc. 
 `[](docs/dicominfo.png)
