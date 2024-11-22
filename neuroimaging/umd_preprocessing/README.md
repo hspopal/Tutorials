@@ -19,7 +19,7 @@ These scripts are meant to make some tedius work in processing your data more st
 For a new project, a new project directory will have to be created in BIDS format. For this pipeline, that includes the main project directory. The main project directory referenced here is `/data/neuron/TRW/reprocessed`. This dataset utilizes a previously collected dataset, in which I converted everything to BIDS format and ran fmriprep. Which is why there is a `reprocessed` directory. Subdirectories should also be created for the following:
 
 - `sourcedata`
-    - Location for the raw dicom files will be located
+  - Location for the raw dicom files will be located
 - `Nifti`
     - Location for NIFTI files
 - `code`
