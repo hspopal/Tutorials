@@ -84,6 +84,7 @@ Let's break down this code:
 
 Once this command is run, it will create a hidden directory, `.heudiconv/`, in your BIDS directory (e.g. `/data/neuron/TRW/reprocessed/.heudiconv/`). Inside this hidden directory, you will find a subdirectory for 001, and a further subdirectory `info` which contains a `dicominfo.tsv` file. This file contains the sequence information for each scan, such as the sequence name, dimensions, TR and TE information, etc. 
 ![](docs/dicominfo.png)
+
 We can use this information in the `heuristic.py` file. **Note:** running the above command may also create a `heuristic.py` file. I have found this "newer" version to be confusing. The `heuristic.py` file I have included here is more simple in my opinion. 
 
 Next, while referencing the `dicominfo.tsv` spreadsheet, update the appropriate information in the `heuristic.py` script to create a key for your scans. In the files I have attached, I am noting that the t1_mpr_sag_p2_iso_0.9 MRI sequence name along with its specific dimensions should be converted to a t1w NIFTI file. I also note the specific fMRI sequences and the task names I would like to use (e.g. sequence cmrr_F6_R2.2C_TR1250_V293_int is named func_task_1, which I defined with the prefix task-int). More information on how to setup your heuristic file can be found in this [tutorial]().
@@ -94,12 +95,23 @@ sh code/preprocessing_TRW-bswift2.sh -s 001 -n
 ```
 Once this command is finished, you should see a subdirectory (e.g. `sub-REDTRW001`) in the `Nifti` directory. This is your MRI data in BIDS format for your subject. Inside, you should see NIFTI files for the anatomical, fieldmap, and functional scans. 
 ![](docs/bids_niftis.png)
+
 If you do not see these files, along with some json files, then check your `heuristic.py` file to make sure your keys and inputs are correct. Most issues in getting your files converted occur because of errors in the `heuristic.py` file. There are also extra files in the `Nifti` directory which are created by heudiconv to match BIDS format, and that you can use in your later processing (e.g. `Nifti/dataset_description.json`)
 
 
 ### Running fmriprep
+This tutorial assumes that preprocessing will be done on a HPC such as BSWIFT2. To get the preprocessing started, you will have to replicate some of the setup steps to create a BIDS directory on BSWIFT. Create the main BIDS directory, and subdirectories for `code`, `Nifti`, 'archive', `derivatives`, `derivatives/log`, `derivatives/freesurfer`, and `derivatives/fmriprep`.  You do not need to transfer over your NIFTI files. The preprocessing script will do that for you, if your directories are set up correctly. You will have to copy over the `dataset_description.json` file from your `Nifti` directory on your server, to the `Nifti` directory on BSWIFT. Next, copy over the `fmriprep-bswift2.sh` and `data_transfer.sh` scripts to the `code` directory on BSWIFT. BSWIFT2 already has singularity installed. You will have to create or download an fmriprep singularity image and upload it to your BSWIFT allocaiton. I usually put this in a general directory (e.g. `/data/software-research/hpopal/`) to use it for multiple projects. In order to use freesurfer, you will have to download a license and put it in the `archive` directory on BSWIFT. The `fmriprep-bswift2.sh` script has the relevant paths for this setup. It also specifies some information about how your job will run, such as requesting the appropriate amount of time and resources for the job. 
 
+To submit a job to BSWIFT for the fmriprep preprocessing, use the following command:
+```
+sh code/preprocessing_TRW-bswift2.sh -s 001 -f
+```
+
+If everything goes well, the preprocessing should take about 18 hours. If freesurfer finishes, but fmriprep does not, it would take about 12 hours. 
 
 ### Transfer data
-
+To transfer the preprocessed fmriprep, freesurfer, and log data from BSWIFT2 to your lab server, use the following command:
+```
+sh code/preprocessing_TRW-bswift2.sh -s 001 -t
+```
 
