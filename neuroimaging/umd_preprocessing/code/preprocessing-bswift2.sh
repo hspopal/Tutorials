@@ -76,7 +76,7 @@ done
 # Set variables and directories
 
 # Define project code abbreviation
-proj_abr="REDTRW"
+proj_abr="REDTRW"  # This will be part of the prefix for all subjects in your dataset (e.g. sub-REDTRW001)
 mnc_abr="RED_TRW"  # In case the project abbreviation from the MNC is something different
 uname=$USER  # Record your directory ID/username
 lab_server="neuron"
@@ -84,7 +84,7 @@ lab_server="neuron"
 # Set path for MNC servers
 MNC_path='/export/software/fmri/massstorage/Elizabeth\ Redcay/TRW\ Social\ Connection'
 proj_dir=/data/${lab_server}/TRW/reprocessed  # This should be the BIDS home directory
-dicom_dir="$proj_dir"/sourcedata/  # Location of dicome files
+dicom_dir=${proj_dir}/sourcedata/  # Location of dicom files
 nifti_dir=${proj_dir}/Nifti/sub-${proj_abr}${subID}  # Output directory of niftis
 bswift_dir=/data/software-research/"${uname}"/TRW/  # BIDS directory on bswift
 

@@ -9,12 +9,12 @@ done
 
 
 singularity exec \
-    --bind /data/neuron/TRW:/base \
+    --bind /data/neuron/TRW/reprocessed:/base \
     /software/neuron/Containers/heudiconv_latest.sif \
     heudiconv \
-    -d /base/original/RED_TRW_{subject}/*/*/*.dcm \
-    -o /base/reprocessed/Nifti \
-    -f /base/reprocessed/code/heuristic.py \
+    -d /base/sourcedata/RED_TRW_{subject}/*/*/*.dcm \
+    -o /base/Nifti \
+    -f /base/code/heuristic.py \
     -s $subID \
     -c dcm2niix -b \
     --overwrite 
